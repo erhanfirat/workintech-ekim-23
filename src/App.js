@@ -1,16 +1,25 @@
+import { useState } from "react";
 import Counter from "./components/Counter";
-import Greeting from "./components/Greeting";
+import Greeting, { Color } from "./components/Greeting";
+import Main from "./layout/Main";
+
+export const userName = "Ali";
 
 function App() {
+  const [sayacBaslangic, setSayacBaslangic] = useState(50);
   const PI = 3.1415;
+  const log = (msj) => console.log(msj);
 
   return (
+    <Main PI={PI} />
     // JSX - Updated HTML
-    <div className="App">
-      <Greeting></Greeting>
-      <hr />
-      <Counter />
-    </div>
+    // <div className="App">
+    //   {Color}
+    //   <br />
+    //   <Greeting apptenGelenPi={PI} mesaj="Merhaba" log={log}></Greeting>
+    //   <hr />
+    //   <Counter sayacBaslangic={sayacBaslangic} />
+    // </div>
   );
 }
 
