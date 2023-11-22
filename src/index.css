@@ -53,3 +53,20 @@ code {
   right: 50px;
   bottom: 50px;
 }
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.products-container > .product-card {
+  flex-basis: 300px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+}
+
+.product-card > img {
+  width: 100%;
+}

@@ -1,4 +1,5 @@
 import AnaSayfa from "../pages/AnaSayfa";
+import ProductPage from "../pages/ProductPage";
 import SayacSayfa from "../pages/SayacSayfa";
 
 const PageBody = ({ PI }) => {
@@ -6,9 +7,8 @@ const PageBody = ({ PI }) => {
     <div className="page-body">
       <AnaSayfa />
       <SayacSayfa PI={PI} />
-      <div className="sticky">
-        Selam
-      </div>
+      <div className="sticky">Selam</div>
+      <ProductPage />
     </div>
   );
 };
