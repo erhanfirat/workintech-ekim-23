@@ -1,4 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "reactstrap";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 
 const CounterCard = ({
   counter,
@@ -16,6 +23,9 @@ const CounterCard = ({
   // useEffect(() => {
   //   console.log("artış miktarı güncellendi: ", artisMiktari);
   // }, [artisMiktari]);
+
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen(!dropdownOpen);
 
   useEffect(() => {
     // component did mount
@@ -39,24 +49,47 @@ const CounterCard = ({
       <p>
         Counter: <strong>{counter}</strong>
       </p>
-      <button onClick={arti1}>+{artisMiktari}</button>
-      <button onClick={eksi1}>-{artisMiktari}</button>
-      <button onClick={yuz}>100</button>
+      <button className="btn btn-secondary me-1" onClick={arti1}>
+        +{artisMiktari}
+      </button>
+      <button className="btn btn-secondary me-1" onClick={eksi1}>
+        -{artisMiktari}
+      </button>
+      <button className="btn btn-secondary me-1" onClick={yuz}>
+        100
+      </button>
 
       <hr />
       <p>
         Artış Miktarı: <strong>{artisMiktari}</strong>
       </p>
-      <button onClick={artisMiktariArttir}>+1</button>
-      <button onClick={artisMiktariAzalt}>-1</button>
+      <Button className="me-1" onClick={artisMiktariArttir}>
+        +1
+      </Button>
+      <Button className="me-1" onClick={artisMiktariAzalt}>
+        -1
+      </Button>
 
       <hr />
       <p>
         Tane Fiyat: <strong>{taneFiyat}</strong>
       </p>
-      <button onClick={() => setTaneFiyat(taneFiyat + 1)}>+1</button>
-      <button onClick={() => setTaneFiyat(taneFiyat - 1)}>-1</button>
+      <Button onClick={() => setTaneFiyat(taneFiyat + 1)}>+1</Button>
+      <Button onClick={() => setTaneFiyat(taneFiyat - 1)}>-1</Button>
 
+      <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+        <DropdownToggle caret>Dropdown</DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem header>Header</DropdownItem>
+          <DropdownItem>Some Action</DropdownItem>
+          <DropdownItem text>Dropdown Item Text</DropdownItem>
+          <DropdownItem disabled>Action (disabled)</DropdownItem>
+          <DropdownItem divider />
+          <DropdownItem>Foo Action</DropdownItem>
+          <DropdownItem>Bar Action</DropdownItem>
+          <DropdownItem>Quo Action</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
       <hr />
       <h4>Fiyat: {fiyat} TL</h4>
     </div>
