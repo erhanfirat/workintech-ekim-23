@@ -3,6 +3,8 @@ import AnaSayfa from "../pages/AnaSayfa";
 import ProductPage from "../pages/ProductPage";
 import SayacSayfa from "../pages/SayacSayfa";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import LoginPage from "../pages/LoginPage";
+import ProductCreatePage from "../pages/ProductCreatePage";
 
 const PageBody = ({ PI }) => {
   return (
@@ -14,8 +16,14 @@ const PageBody = ({ PI }) => {
         <Route path="/sayac">
           <SayacSayfa PI={PI} />
         </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
         <Route path="/products" exact>
           <ProductPage />
+        </Route>
+        <Route path="/products/create" exact>
+          <ProductCreatePage />
         </Route>
         <Route path="/products/detail/:productId" exact>
           <ProductDetailPage />

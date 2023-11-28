@@ -6,12 +6,30 @@ const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [filterText, setFilterText] = useState("");
 
-  useEffect(() => {
+  const deleteProduct = (productId) => {
+    axios
+      .delete(
+        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
+      )
+      .then((res) => {
+        console.log("ürün silindi: ", res.data);
+        fetchProducts();
+      })
+      .catch((err) => {
+        console.log("ürün silinirken bir hata ile karşılaşıldı: ", err);
+      });
+  };
+
+  const fetchProducts = () => {
     axios
       .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
       .then((res) => {
         setProducts(res.data);
       });
+  };
+
+  useEffect(() => {
+    fetchProducts();
   }, []);
 
   useEffect(() => {
@@ -32,7 +50,11 @@ const ProductPage = () => {
             p.name.toLowerCase().includes(filterText.toLowerCase())
           )
           .map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              deleteProduct={deleteProduct}
+            />
           ))}
       </div>
     </div>

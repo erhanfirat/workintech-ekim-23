@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, deleteProduct }) => {
   const history = useHistory();
 
   const goProductDetail = () => {
@@ -23,6 +23,10 @@ const ProductCard = ({ product }) => {
       <Button onClick={goProductDetail}>
         <i class="fa-solid fa-magnifying-glass me-2"></i>
         İncele Btn
+      </Button>
+      <Button onClick={() => deleteProduct(product.id)} color="danger">
+        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        Sil
       </Button>
     </div>
   );
