@@ -70,3 +70,13 @@ code {
 .product-card > img {
   width: 100%;
 }
+
+.form-error {
+  color: red;
+  font-size: 0.75rem;
+}
+
+input.error {
+  border-color: red;
+  border-width: 1px;
+}

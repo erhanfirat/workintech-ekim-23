@@ -17,15 +17,15 @@ const ProductCard = ({ product, deleteProduct }) => {
       <p>{product.description}</p>
       <p>{product.price}</p>
       <Link className="btn btn-primary" to={`/products/detail/${product.id}`}>
-        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        <i className="fa-solid fa-magnifying-glass me-2"></i>
         İncele Link
       </Link>
       <Button onClick={goProductDetail}>
-        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        <i className="fa-solid fa-magnifying-glass me-2"></i>
         İncele Btn
       </Button>
       <Button onClick={() => deleteProduct(product.id)} color="danger">
-        <i class="fa-solid fa-magnifying-glass me-2"></i>
+        <i className="fa-solid fa-magnifying-glass me-2"></i>
         Sil
       </Button>
     </div>

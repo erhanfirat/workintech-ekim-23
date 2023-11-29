@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const ProductForm = () => {
@@ -30,11 +30,15 @@ const ProductForm = () => {
   };
 
   const inputChangeHandler = (e) => {
-    // todo: inputtaki değeri state e yaz
-    const key = e.target.name;
+    // e.target = Input DOM nesnesi
+    const { name, value, type, checked } = e.target;
 
-    setProduct({ ...product, [key]: e.target.value });
+    setProduct({ ...product, [name]: type === "checkbox" ? checked : value });
   };
+
+  useEffect(() => {
+    console.log("Product: ", product);
+  }, [product]);
 
   return (
     <form onSubmit={productSubmitHandler}>
@@ -64,7 +68,7 @@ const ProductForm = () => {
         <label>
           Fotoğraf:
           <input
-            type="text"
+            type="url"
             name="img"
             value={product.img}
             onChange={inputChangeHandler}
@@ -91,6 +95,39 @@ const ProductForm = () => {
             value={product.stock}
             onChange={inputChangeHandler}
           />
+        </label>
+      </div>
+      <div>
+        <label>
+          Aktif:
+          <input
+            type="checkbox"
+            name="active"
+            checked={product.active}
+            onChange={inputChangeHandler}
+          />
+        </label>
+      </div>
+      <div>
+        <label>
+          Renk:
+          <select
+            name="color"
+            value={product.color}
+            onChange={inputChangeHandler}
+          >
+            <option value="" disabled>
+              Lütfen Renk seçiniz...
+            </option>
+            <option value="blue">Blue</option>
+            <option value="black">Black</option>
+            <option value="red">Red</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="brown">Brown</option>
+            <option value="white">White</option>
+            <option value="orange">Orange</option>
+          </select>
         </label>
       </div>
       <button type="submit">Kaydet</button>
