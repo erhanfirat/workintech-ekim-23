@@ -31,18 +31,26 @@ const Header = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/products">
+              <NavLink className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>{" "}
+            <li className="nav-item">
+              <NavLink
+                className="nav-link"
+                to="/products"
+                data-cy="link-products"
+              >
                 Ürünler
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/products/create">
+              <NavLink
+                className="nav-link"
+                to="/products/create"
+                data-cy="link-product-form"
+              >
                 + Ürün Ekle
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
               </NavLink>
             </li>
           </ul>

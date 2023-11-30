@@ -42,7 +42,11 @@ const ProductPage = () => {
       <hr />
       {/* ÜRÜNLER LİSTELENECEK */}
       <div>
-        <input type="text" onChange={(e) => setFilterText(e.target.value)} />
+        <input
+          id="products-filter"
+          type="text"
+          onChange={(e) => setFilterText(e.target.value)}
+        />
       </div>
       <div className="products-container">
         {products
