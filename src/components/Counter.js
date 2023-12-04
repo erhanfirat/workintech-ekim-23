@@ -17,7 +17,9 @@ const Counter = (props) => {
   };
 
   const yuz = () => {
+    // counter: 5
     setCounter(100);
+    // counter ?
   };
 
   const artisMiktariArttir = () => {

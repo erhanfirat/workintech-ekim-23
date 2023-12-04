@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -23,6 +23,7 @@ const LoginForm = () => {
     // todo: inputtaki value yu email state ine yaz
     console.log("input change event > ", e);
     setEmail(e.target.value);
+    // ?
   };
 
   const passwordChangeHandler = (e) => {
@@ -30,6 +31,27 @@ const LoginForm = () => {
     console.log("input change event > ", e);
     setPassword(e.target.value);
   };
+
+  useEffect(() => {
+    // güncel email değeri
+    console.log("LoginForm > Email state i Güncellendi: ", email);
+  }, [email]);
+
+  useEffect(() => {
+    // component did mount
+    console.log("LoginForm Yüklendi | Component Did Mount!");
+
+    return () => {
+      // component will unmount
+      console.log("LoginForm kaldırıldı!");
+    };
+  }, []);
+
+  useEffect(() => {
+    // component did update
+    // email, password
+    console.log("LoginForm Güncellendi | Component Did Update!");
+  });
 
   return (
     <form onSubmit={submitHandler}>

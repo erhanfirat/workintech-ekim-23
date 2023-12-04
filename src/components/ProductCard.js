@@ -11,7 +11,7 @@ const ProductCard = ({ product, deleteProduct }) => {
   };
 
   return (
-    <div className="product-card">
+    <div className="product-card d-flex flex-column">
       <img src={product.img} />
       <h4>{product.name}</h4>
       <p>{product.description}</p>
@@ -24,10 +24,17 @@ const ProductCard = ({ product, deleteProduct }) => {
         <i className="fa-solid fa-magnifying-glass me-2"></i>
         İncele Btn
       </Button>
-      <Button onClick={() => deleteProduct(product.id)} color="danger">
+      <Link className="btn btn-primary" to={`/products/edit/${product.id}`}>
+        <i className="fa-solid fa-pen me-2"></i>
+        Düzenle
+      </Link>
+      <button
+        onClick={() => deleteProduct(product.id)}
+        className="btn btn-danger"
+      >
         <i className="fa-solid fa-magnifying-glass me-2"></i>
         Sil
-      </Button>
+      </button>
     </div>
   );
 };

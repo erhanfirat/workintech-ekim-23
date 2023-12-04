@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
   const [filterText, setFilterText] = useState("");
+  const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
   const deleteProduct = (productId) => {
     axios
@@ -36,9 +37,17 @@ const ProductPage = () => {
     console.log("filterText: ", filterText);
   }, [filterText]);
 
+  useEffect(() => {
+    setList(
+      products.filter((p) =>
+        p.name.toLowerCase().includes(filterText.toLowerCase())
+      )
+    );
+  }, [filterText, products]);
+
   return (
     <div>
-      <h1>Ürünler Sayfası</h1>
+      <h1>Ürünler Sayfası 123 </h1>
       <hr />
       {/* ÜRÜNLER LİSTELENECEK */}
       <div>
@@ -49,17 +58,13 @@ const ProductPage = () => {
         />
       </div>
       <div className="products-container">
-        {products
-          .filter((p) =>
-            p.name.toLowerCase().includes(filterText.toLowerCase())
-          )
-          .map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              deleteProduct={deleteProduct}
-            />
-          ))}
+        {list.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            deleteProduct={deleteProduct}
+          />
+        ))}
       </div>
     </div>
   );

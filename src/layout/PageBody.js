@@ -5,6 +5,7 @@ import SayacSayfa from "../pages/SayacSayfa";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
+import ProductEditPage from "../pages/ProductEditPage";
 
 const PageBody = ({ PI }) => {
   return (
@@ -27,6 +28,9 @@ const PageBody = ({ PI }) => {
         </Route>
         <Route path="/products/detail/:productId" exact>
           <ProductDetailPage />
+        </Route>
+        <Route path="/products/edit/:productId" exact>
+          <ProductEditPage />
         </Route>
         <Route path="*">
           <h2 className="error-box">404 - Sayfa Bulunamadı</h2>

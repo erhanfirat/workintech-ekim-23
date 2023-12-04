@@ -12,7 +12,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 
-const ProductYupForm = () => {
+const ProductYupForm = ({ productData }) => {
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -52,13 +52,35 @@ const ProductYupForm = () => {
     // sayfa yenilenmesini engelle
     console.log("yeni product: ", product);
 
-    axios
-      .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
-      .then((res) => {
-        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-        // todo: kullanıcıyı ürünler sayfasına redirect
-        history.push("/products");
-      });
+    // yeni kayıt ekleme: POST
+    // kayıt güncelleme: PUT
+    // ?
+    if (product.id) {
+      // Update: PUT
+      axios
+        .put(
+          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" +
+            product.id,
+          product
+        )
+        .then((res) => {
+          console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
+          // todo: kullanıcıyı ürünler sayfasına redirect
+          history.push("/products");
+        });
+    } else {
+      // Create: POST
+      axios
+        .post(
+          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
+          product
+        )
+        .then((res) => {
+          console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
+          // todo: kullanıcıyı ürünler sayfasına redirect
+          history.push("/products");
+        });
+    }
   };
 
   const inputChangeHandler = (e) => {
@@ -77,6 +99,10 @@ const ProductYupForm = () => {
         setFormErrors({ ...formErrors, [name]: err.errors[0] });
       });
   };
+
+  useEffect(() => {
+    productData && setProduct(productData);
+  }, [productData]);
 
   useEffect(() => {
     console.log("Product: ", product);
