@@ -11,18 +11,14 @@ const ProductCard = ({ product, deleteProduct }) => {
   };
 
   return (
-    <div className="product-card d-flex flex-column">
+    <div className="product-card d-flex flex-column gap-2">
       <img src={product.img} />
       <h4>{product.name}</h4>
       <p>{product.description}</p>
       <p>{product.price}</p>
-      <Link className="btn btn-primary" to={`/products/detail/${product.id}`}>
-        <i className="fa-solid fa-magnifying-glass me-2"></i>
-        İncele Link
-      </Link>
       <Button onClick={goProductDetail}>
         <i className="fa-solid fa-magnifying-glass me-2"></i>
-        İncele Btn
+        İncele
       </Button>
       <Link className="btn btn-primary" to={`/products/edit/${product.id}`}>
         <i className="fa-solid fa-pen me-2"></i>

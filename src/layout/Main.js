@@ -6,7 +6,7 @@ const Main = ({ PI }) => {
   return (
     <div className="layout">
       <Header />
-      <PageBody PI={PI} />
+      <PageBody PI={PI}/>
       <Footer />
     </div>
   );

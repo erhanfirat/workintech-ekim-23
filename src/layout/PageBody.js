@@ -9,7 +9,7 @@ import ProductEditPage from "../pages/ProductEditPage";
 
 const PageBody = ({ PI }) => {
   return (
-    <div className="page-body">
+    <div className="page-body container">
       <Switch>
         <Route path="/" exact>
           <AnaSayfa />

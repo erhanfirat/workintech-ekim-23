@@ -12,6 +12,17 @@ import {
   FormFeedback,
 } from "reactstrap";
 
+const renkler = [
+  "Blue",
+  "Black",
+  "Red",
+  "Yellow",
+  "Green",
+  "Brown",
+  "White",
+  "Orange",
+];
+
 const ProductYupForm = ({ productData }) => {
   const [product, setProduct] = useState({
     name: "",
@@ -50,6 +61,7 @@ const ProductYupForm = ({ productData }) => {
   const productSubmitHandler = (e) => {
     e.preventDefault();
     // sayfa yenilenmesini engelle
+
     console.log("yeni product: ", product);
 
     // yeni kayıt ekleme: POST
@@ -120,8 +132,9 @@ const ProductYupForm = ({ productData }) => {
   return (
     <form onSubmit={productSubmitHandler}>
       <FormGroup>
-        <Label>Ürün adı:</Label>
+        <Label htmlFor="name-input">Ürün adı:</Label>
         <Input
+          id="name-input"
           type="text"
           value={product.name}
           name="name"
@@ -176,11 +189,13 @@ const ProductYupForm = ({ productData }) => {
           onChange={inputChangeHandler}
           invalid={!!formErrors.stock}
         />
+
         <FormFeedback>{formErrors.stock}</FormFeedback>
       </FormGroup>
       <FormGroup>
-        <Label>Aktif:</Label>
+        <Label htmlFor="active-input">Aktif: </Label>
         <Input
+          id="active-input"
           type="checkbox"
           name="active"
           checked={product.active}
@@ -201,16 +216,29 @@ const ProductYupForm = ({ productData }) => {
           <option value="" disabled>
             Lütfen Renk seçiniz...
           </option>
-          <option value="blue">Blue</option>
-          <option value="black">Black</option>
-          <option value="red">Red</option>
-          <option value="yellow">Yellow</option>
-          <option value="green">Green</option>
-          <option value="brown">Brown</option>
-          <option value="white">White</option>
-          <option value="orange">Orange</option>
+          {renkler.map((renk) => (
+            <option value={renk}>{renk}</option>
+          ))}
         </Input>
         <FormFeedback>{formErrors.color}</FormFeedback>
+      </FormGroup>
+      <FormGroup>
+        <Label>Araç Renk</Label>
+
+        {renkler.map((renk) => (
+          <div>
+            <label>
+              <input
+                type="radio"
+                value={renk}
+                checked={product.color == renk}
+                name="color"
+                onChange={inputChangeHandler}
+              />
+              {renk}
+            </label>
+          </div>
+        ))}
       </FormGroup>
       <Button color="primary" type="submit" disabled={!formValid}>
         Kaydet

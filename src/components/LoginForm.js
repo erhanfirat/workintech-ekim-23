@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Button } from "reactstrap";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -56,27 +57,30 @@ const LoginForm = () => {
   return (
     <form onSubmit={submitHandler}>
       <div>
-        <label htmlFor="user-mail">Email</label>
+        <label className="form-label" htmlFor="user-mail">
+          Email
+        </label>
         <input
           id="user-mail"
+          className="form-control"
           type="email"
           value={email}
           onChange={mailChangeHandler}
         />
       </div>
-      <div>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={passwordChangeHandler}
-          />
-        </label>
+      <div className="mb-3">
+        <label className="form-label">Password</label>
+        <input
+          type="password"
+          className="form-control"
+          value={password}
+          onChange={passwordChangeHandler}
+        />
       </div>
 
       <button
         type="button"
+        className="btn btn-secondary me-2"
         onClick={() => {
           setEmail("");
           setPassword("");
@@ -84,7 +88,9 @@ const LoginForm = () => {
       >
         Reset Form
       </button>
-      <button type="submit">Login</button>
+      <Button type="submit" color="primary">
+        Login
+      </Button>
     </form>
   );
 };

@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
+import ProductCard2 from "../components/ProductCard2";
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -57,9 +58,9 @@ const ProductPage = () => {
           onChange={(e) => setFilterText(e.target.value)}
         />
       </div>
-      <div className="products-container">
+      <div className="products-container gap-2">
         {list.map((product) => (
-          <ProductCard
+          <ProductCard2
             key={product.id}
             product={product}
             deleteProduct={deleteProduct}

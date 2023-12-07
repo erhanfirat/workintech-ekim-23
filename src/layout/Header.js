@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 const Header = () => {
   return (
     <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
-      <div className="container-fluid">
+      <div className="container">
         <a className="navbar-brand" href="#">
           Ekim 1023
         </a>
