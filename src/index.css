@@ -80,3 +80,7 @@ input.error {
   border-color: red;
   border-width: 1px;
 }
+
+.form-control.invalid {
+  border-color: red;
+}

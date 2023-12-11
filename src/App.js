@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import Counter from "./components/Counter";
-import Greeting, { Color } from "./components/Greeting";
 import Main from "./layout/Main";
+import { ToastContainer, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export const userName = "Ali";
 
@@ -15,10 +16,20 @@ function App() {
     // tüm uygulama çalıştırıldı ve yüklendi
     // Sadece 1 kere çalışır
     console.warn("APP DID MOUNT! UYGULAMA YÜKLENDİ!");
+    // toast.success("UYGULAMA YÜKLENDİ");
+    // toast.error("Bir hata ile karşılaşıldı.");
+    // toast.warn("Dikkat!");
   }, []);
 
   return (
-    <Main PI={PI} />
+    <>
+      <Main PI={PI} />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        theme="colored"
+      />
+    </>
     // JSX - Updated HTML
     // <div className="App">
     //   {Color}
@@ -31,5 +42,5 @@ function App() {
 }
 
 export default App;
- 
+
 // Linting - ESLint - EcmaScript Lint
