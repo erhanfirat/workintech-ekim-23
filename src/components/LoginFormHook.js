@@ -9,6 +9,7 @@ const LoginFormHook = () => {
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
+      name: "",
       email: "",
       password: "",
     },
@@ -22,6 +23,7 @@ const LoginFormHook = () => {
       .post("https://reqres.in/api/user", formData)
       .then((res) => {
         console.log("Login oldu: ", res.data);
+        localStorage.setItem("user-name", formData.name);
       })
       .catch((err) => {
         console.error("Login Hata: ", err);
@@ -33,7 +35,13 @@ const LoginFormHook = () => {
       <h3>Form is {isValid ? "" : "in"}valid!</h3>
       <div>
         <Label>İsim: </Label>
-        <Input type="text" {...register("name")} />
+        <input
+          type="text"
+          {...register("name")}
+          className={`form-control ${
+            errors?.name?.message ? "is-invalid" : ""
+          }`}
+        />
         <div></div>
       </div>
 

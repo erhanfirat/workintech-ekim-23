@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import useLocalStorage from "../utils/hooks/useLocalStorage";
 
 const Header = () => {
+  const [userName, setUserName] = useState("");
+  const [theme, setTheme] = useLocalStorage("theme", "light");
+
+  useEffect(() => {
+    // component did mount
+    // localStorage > user-name değerini kontrol et
+    // state e yaz
+    setUserName(localStorage.getItem("user-name"));
+  }, []);
+
   return (
     <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
       <div className="container">
@@ -18,7 +30,7 @@ const Header = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/" exact>
@@ -30,11 +42,13 @@ const Header = () => {
                 Yumurta Sepeti
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>{" "}
+            {!userName && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/login">
+                  Login
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item">
               <NavLink
                 className="nav-link"
@@ -54,6 +68,19 @@ const Header = () => {
               </NavLink>
             </li>
           </ul>
+        </div>
+        {userName && <div>Merhaba {userName}</div>}
+        <div>
+          <select
+            value={theme}
+            className="form-control"
+            onChange={(e) => {
+              setTheme(e.target.value);
+            }}
+          >
+            <option>light</option>
+            <option>dark</option>
+          </select>
         </div>
       </div>
     </nav>

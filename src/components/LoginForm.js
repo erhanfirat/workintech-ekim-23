@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button } from "reactstrap";
+import useInput from "../utils/hooks/useInput";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, emailHandler] = useInput("");
+  const [password, passwordHandler] = useInput("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -20,40 +21,6 @@ const LoginForm = () => {
       });
   };
 
-  const mailChangeHandler = (e) => {
-    // todo: inputtaki value yu email state ine yaz
-    console.log("input change event > ", e);
-    setEmail(e.target.value);
-    // ?
-  };
-
-  const passwordChangeHandler = (e) => {
-    // todo: inputtaki value yu email state ine yaz
-    console.log("input change event > ", e);
-    setPassword(e.target.value);
-  };
-
-  useEffect(() => {
-    // güncel email değeri
-    console.log("LoginForm > Email state i Güncellendi: ", email);
-  }, [email]);
-
-  useEffect(() => {
-    // component did mount
-    console.log("LoginForm Yüklendi | Component Did Mount!");
-
-    return () => {
-      // component will unmount
-      console.log("LoginForm kaldırıldı!");
-    };
-  }, []);
-
-  useEffect(() => {
-    // component did update
-    // email, password
-    console.log("LoginForm Güncellendi | Component Did Update!");
-  });
-
   return (
     <form onSubmit={submitHandler}>
       <div>
@@ -65,7 +32,7 @@ const LoginForm = () => {
           className="form-control"
           type="email"
           value={email}
-          onChange={mailChangeHandler}
+          onChange={emailHandler}
         />
       </div>
       <div className="mb-3">
@@ -74,17 +41,14 @@ const LoginForm = () => {
           type="password"
           className="form-control"
           value={password}
-          onChange={passwordChangeHandler}
+          onChange={passwordHandler}
         />
       </div>
 
       <button
         type="button"
         className="btn btn-secondary me-2"
-        onClick={() => {
-          setEmail("");
-          setPassword("");
-        }}
+        onClick={() => {}}
       >
         Reset Form
       </button>
