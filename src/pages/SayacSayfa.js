@@ -8,7 +8,11 @@ const SayacSayfa = ({ PI }) => {
     <div className="page">
       <h1>Yumurta Sepeti</h1>
       <hr />
-      <button className="btn btn-primary" onClick={() => setShow(!show)}>
+      <button
+        className="btn btn-primary"
+        data-testid="counter-toggle-btn"
+        onClick={() => setShow(!show)}
+      >
         Toggle Counter
       </button>
       {show && <Counter PI={PI} sayacBaslangic={0} />}

@@ -6,9 +6,6 @@
     "@babel/core": "^7.16.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
     "@svgr/webpack": "^5.5.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.2",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -118,7 +115,8 @@
     "modulePaths": [],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
+      "axios": "axios/dist/node/axios.cjs"
     },
     "moduleFileExtensions": [
       "web.js",
@@ -145,6 +143,9 @@
   },
   "devDependencies": {
     "cypress": "^13.6.0",
-    "tailwindcss": "^3.3.6"
+    "tailwindcss": "^3.3.6",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0"
   }
 }

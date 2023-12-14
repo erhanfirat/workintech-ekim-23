@@ -13,7 +13,7 @@ const Counter = (props) => {
   };
 
   const eksi1 = () => {
-    setCounter(counter - artisMiktari);
+    counter - artisMiktari >= 0 && setCounter(counter - artisMiktari);
   };
 
   const yuz = () => {
@@ -27,7 +27,7 @@ const Counter = (props) => {
   };
 
   const artisMiktariAzalt = () => {
-    setArtisMiktari(artisMiktari - 1);
+    artisMiktari - 1 >= 0 && setArtisMiktari(artisMiktari - 1);
   };
 
   useEffect(() => {

@@ -42,17 +42,25 @@ const CounterCard = ({
   });
 
   return (
-    <div className="counter-card">
+    <div className="counter-card" data-testid="counter-card">
       <p>PI: {PI}</p>
       <h3>Sayaç</h3>
       <hr />
       <p>
-        Counter: <strong>{counter}</strong>
+        Counter: <strong data-testid="counter-display">{counter}</strong>
       </p>
-      <button className="btn btn-secondary me-1" onClick={arti1}>
+      <button
+        className="btn btn-secondary me-1"
+        onClick={arti1}
+        data-testid="counter-arttir-btn"
+      >
         +{artisMiktari}
       </button>
-      <button className="btn btn-secondary me-1" onClick={eksi1}>
+      <button
+        className="btn btn-secondary me-1"
+        onClick={eksi1}
+        data-testid="counter-azalt-btn"
+      >
         -{artisMiktari}
       </button>
       <button className="btn btn-secondary me-1" onClick={yuz}>
@@ -61,12 +69,17 @@ const CounterCard = ({
 
       <hr />
       <p>
-        Artış Miktarı: <strong>{artisMiktari}</strong>
+        Artış Miktarı:{" "}
+        <strong data-testid="artis-miktari">{artisMiktari}</strong>
       </p>
       <Button className="me-1" onClick={artisMiktariArttir}>
         +1
       </Button>
-      <Button className="me-1" onClick={artisMiktariAzalt}>
+      <Button
+        className="me-1"
+        onClick={artisMiktariAzalt}
+        data-testid="azalt-artis"
+      >
         -1
       </Button>
 

@@ -12,7 +12,7 @@ const ProductCard = ({ product, deleteProduct }) => {
 
   return (
     <div className="product-card d-flex flex-column gap-2">
-      <img src={product.img} />
+      <img src={product.img} alt={product.name} />
       <h4>{product.name}</h4>
       <p>{product.description}</p>
       <p>{product.price}</p>

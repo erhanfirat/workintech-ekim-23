@@ -11,4 +11,8 @@ const useLocalStorage = (key, initialData = "") => {
   return [val, setLocalState];
 };
 
+// linting - Ecma Script Linting - ESLint
+// hata verecek bir kodlamaÜ;
+
+
 export default useLocalStorage;

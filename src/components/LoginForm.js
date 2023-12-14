@@ -30,9 +30,11 @@ const LoginForm = () => {
         <input
           id="user-mail"
           className="form-control"
+          placeholder="Please write your email..."
           type="email"
           value={email}
           onChange={emailHandler}
+          data-testid="user-email-input"
         />
       </div>
       <div className="mb-3">
@@ -41,6 +43,7 @@ const LoginForm = () => {
           type="password"
           className="form-control"
           value={password}
+          data-testid="user-pass-input"
           onChange={passwordHandler}
         />
       </div>
@@ -52,7 +55,7 @@ const LoginForm = () => {
       >
         Reset Form
       </button>
-      <Button type="submit" color="primary">
+      <Button type="submit" color="primary" data-testid="login-submit-btn">
         Login
       </Button>
     </form>
