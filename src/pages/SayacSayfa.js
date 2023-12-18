@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Counter from "../components/Counter";
+import CounterByReducer from "../components/CounterByReducer";
 
 const SayacSayfa = ({ PI }) => {
   const [show, setShow] = useState(true);
@@ -15,7 +16,7 @@ const SayacSayfa = ({ PI }) => {
       >
         Toggle Counter
       </button>
-      {show && <Counter PI={PI} sayacBaslangic={0} />}
+      {show && <CounterByReducer PI={PI} sayacBaslangic={0} />}
     </div>
   );
 };
