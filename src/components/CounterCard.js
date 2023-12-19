@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
 import {
   Dropdown,
@@ -23,6 +24,7 @@ const CounterCard = ({
   // useEffect(() => {
   //   console.log("artış miktarı güncellendi: ", artisMiktari);
   // }, [artisMiktari]);
+  const userName = useSelector((store) => store.user.name);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen(!dropdownOpen);
@@ -44,6 +46,7 @@ const CounterCard = ({
   return (
     <div className="counter-card" data-testid="counter-card">
       <p>PI: {PI}</p>
+      <p>Store user name: {userName}</p>
       <h3>Sayaç</h3>
       <hr />
       <p>

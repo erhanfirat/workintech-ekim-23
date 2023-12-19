@@ -1,17 +1,20 @@
 import { ButtonIndigo } from "../components/ButtonIndigo";
 import { differenceInDays, formatDistance } from "date-fns";
 import { tr } from "date-fns/locale";
+import { useSelector } from "react-redux";
 
 const AnaSayfa = () => {
-  const yasadigimGun = differenceInDays(new Date(), new Date("1985-12-17"));
+  const storeUserName = useSelector((store) => store.user.name);
 
+  const yasadigimGun = differenceInDays(new Date(), new Date("1985-12-17"));
   const formatDays = formatDistance(new Date(), new Date("1985-12-17"), {
     addSuffix: false,
     locale: tr,
   });
+
   return (
     <div className="page">
-      <h1>Ana Sayfa</h1>
+      <h1>Ana Sayfa - {storeUserName}</h1>
       <hr />
       <p>Sayfama hoş geldiniz</p>
       <h2>

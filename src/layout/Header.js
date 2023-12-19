@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useLocalStorage from "../utils/hooks/useLocalStorage";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
   const [theme, setTheme] = useLocalStorage("theme", "light");
+  const storeUserName = useSelector((store) => store.user.name);
+  const storeUserEmail = useSelector((store) => store.user.email);
+
+  const productCount = useSelector((store) => store.products.list.length);
 
   useEffect(() => {
     // component did mount
@@ -17,7 +22,7 @@ const Header = () => {
     <nav className="navbar navbar-expand-sm bg-primary" data-bs-theme="dark">
       <div className="container">
         <a className="navbar-brand" href="#">
-          Ekim 1023
+          Ekim 1023 - {storeUserName}, {storeUserEmail}
         </a>
         <button
           className="navbar-toggler"
@@ -55,7 +60,7 @@ const Header = () => {
                 to="/products"
                 data-cy="link-products"
               >
-                Ürünler
+                Ürünler [{productCount}]
               </NavLink>
             </li>
             <li className="nav-item">
