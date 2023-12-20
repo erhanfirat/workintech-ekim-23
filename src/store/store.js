@@ -1,6 +1,12 @@
-import { combineReducers, legacy_createStore as createStore } from "redux";
+import {
+  applyMiddleware,
+  combineReducers,
+  legacy_createStore as createStore,
+} from "redux";
 import { userReducer } from "./reducers/userReducer";
 import { productReducer } from "./reducers/productReducer";
+import { myLogger } from "./middleware/logger";
+import { isLoggedIn } from "./middleware/isLoggedIn";
 // eski versiyonlar için -> import { createStore } from 'redux';
 
 export const reducers = combineReducers({
@@ -8,4 +14,7 @@ export const reducers = combineReducers({
   products: productReducer,
 });
 
-export const store = createStore(reducers);
+export const store = createStore(
+  reducers,
+  applyMiddleware(isLoggedIn, myLogger)
+);
