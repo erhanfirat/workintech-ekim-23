@@ -5,6 +5,7 @@ import useInput from "../utils/hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
 import { UserActions } from "../store/reducers/userReducer";
 import { FetchStates } from "../store/reducers/productReducer";
+import { loginUserActionCreator } from "../store/actions/userActions";
 
 const LoginForm = () => {
   const [name, nameHandler] = useInput("");
@@ -16,32 +17,8 @@ const LoginForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("Form submit edildi! ", { name, email, password });
-
-    dispatch({
-      type: UserActions.setUserFetchState,
-      payload: FetchStates.fetching,
-    });
-    setTimeout(() => {
-      axios
-        .post("https://reqres.in/api/user", { name, email, password })
-        .then((res) => {
-          console.log("Login oldu: ", res.data);
-          // dispatch action göndermemiz gerekir
-          dispatch({ type: UserActions.setUserName, payload: name });
-          dispatch({ type: UserActions.setUserEmail, payload: email });
-          dispatch({
-            type: UserActions.setUserFetchState,
-            payload: FetchStates.fetched,
-          });
-        })
-        .catch((err) => {
-          console.error("Login Hata: ", err);
-          dispatch({
-            type: UserActions.setUserFetchState,
-            payload: FetchStates.failed,
-          });
-        });
-    }, 2000);
+    
+    dispatch(loginUserActionCreator({ name, email, password }));
   };
 
   return (

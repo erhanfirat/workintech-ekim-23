@@ -7,6 +7,7 @@ import { userReducer } from "./reducers/userReducer";
 import { productReducer } from "./reducers/productReducer";
 import { myLogger } from "./middleware/logger";
 import { isLoggedIn } from "./middleware/isLoggedIn";
+import { thunk } from "redux-thunk";
 // eski versiyonlar için -> import { createStore } from 'redux';
 
 export const reducers = combineReducers({
@@ -16,5 +17,5 @@ export const reducers = combineReducers({
 
 export const store = createStore(
   reducers,
-  applyMiddleware(isLoggedIn, myLogger)
+  applyMiddleware(isLoggedIn, myLogger, thunk)
 );
