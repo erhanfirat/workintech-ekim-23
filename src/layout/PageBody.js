@@ -6,6 +6,7 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
+import ProductPageContext from "../pages/ProductPageContext";
 
 const PageBody = ({ PI }) => {
   return (
@@ -21,7 +22,8 @@ const PageBody = ({ PI }) => {
           <LoginPage />
         </Route>
         <Route path="/products" exact>
-          <ProductPage />
+          {/* <ProductPage /> */}
+          <ProductPageContext />
         </Route>
         <Route path="/products/create" exact>
           <ProductCreatePage />

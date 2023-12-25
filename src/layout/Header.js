@@ -1,15 +1,21 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useLocalStorage from "../utils/hooks/useLocalStorage";
 import { useSelector } from "react-redux";
+import { CounterContext } from "../context/CounterContext";
+import { SettingsContext } from "../context/SettingsContext";
+import { ProductContext } from "../context/ProductContext";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
-  const [theme, setTheme] = useLocalStorage("theme", "light");
+  const { theme, setTheme, lang, setLang } = useContext(SettingsContext);
   const storeUserName = useSelector((store) => store.user.name);
   const storeUserEmail = useSelector((store) => store.user.email);
+  const { counter } = useContext(CounterContext);
 
-  const productCount = useSelector((store) => store.products.list.length);
+  // const productCount = useSelector((store) => store.products.list.length);
+  const { products } = useContext(ProductContext);
+  const productCount = products.length;
 
   useEffect(() => {
     // component did mount
@@ -44,7 +50,7 @@ const Header = () => {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/sayac">
-                Yumurta Sepeti
+                Yumurta Sepeti [{counter}]
               </NavLink>
             </li>
             {!userName && (
@@ -85,6 +91,20 @@ const Header = () => {
           >
             <option>light</option>
             <option>dark</option>
+          </select>
+        </div>
+        <div>
+          <select
+            value={lang}
+            className="form-control"
+            onChange={(e) => {
+              setLang(e.target.value);
+            }}
+          >
+            <option>tr</option>
+            <option>en</option>
+            <option>fr</option>
+            <option>es</option>
           </select>
         </div>
       </div>

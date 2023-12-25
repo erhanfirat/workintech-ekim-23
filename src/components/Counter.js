@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Greeting from "./Greeting";
 import CounterCard from "./CounterCard";
+import { CounterContext } from "../context/CounterContext";
 
 const Counter = (props) => {
-  const [counter, setCounter] = useState(props.sayacBaslangic);
-  const [artisMiktari, setArtisMiktari] = useState(1);
-  const [taneFiyat, setTaneFiyat] = useState(5);
+  const {
+    counter,
+    setCounter,
+    artisMiktari,
+    setArtisMiktari,
+    taneFiyat,
+    setTaneFiyat,
+  } = useContext(CounterContext);
   const [fiyat, setFiyat] = useState(0);
 
   const arti1 = () => {

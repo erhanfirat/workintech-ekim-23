@@ -7,13 +7,22 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import { CounterContextProvider } from "./context/CounterContext";
+import { SettingsContextProvider } from "./context/SettingsContext";
+import { ProductContextProvider } from "./context/ProductContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       {/* React Router DOM Provider component*/}
-      <App />
+      <CounterContextProvider>
+        <SettingsContextProvider>
+          <ProductContextProvider>
+            <App />
+          </ProductContextProvider>
+        </SettingsContextProvider>
+      </CounterContextProvider>
     </BrowserRouter>
   </Provider>
 );

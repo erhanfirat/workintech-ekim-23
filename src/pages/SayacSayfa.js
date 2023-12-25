@@ -16,7 +16,7 @@ const SayacSayfa = ({ PI }) => {
       >
         Toggle Counter
       </button>
-      {show && <CounterByReducer PI={PI} sayacBaslangic={0} />}
+      {show && <Counter PI={PI} sayacBaslangic={0} />}
     </div>
   );
 };
