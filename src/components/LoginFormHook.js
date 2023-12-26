@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Button, Input, Label } from "reactstrap";
+import { API } from "../api/api";
 
 const LoginFormHook = () => {
   const {
@@ -19,8 +19,7 @@ const LoginFormHook = () => {
   const submitHandler = (formData) => {
     console.log("Form submit edildi! ", formData);
 
-    axios
-      .post("https://reqres.in/api/user", formData)
+    API.post("https://reqres.in/api/user", formData)
       .then((res) => {
         console.log("Login oldu: ", res.data);
         localStorage.setItem("user-name", formData.name);

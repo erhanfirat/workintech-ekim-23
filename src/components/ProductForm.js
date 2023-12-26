@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { API } from "../api/api";
 
 const ProductForm = () => {
   const [product, setProduct] = useState({
@@ -20,7 +20,7 @@ const ProductForm = () => {
     // sayfa yenilenmesini engelle
     console.log("yeni product: ", product);
 
-    axios
+    API
       .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
       .then((res) => {
         console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);

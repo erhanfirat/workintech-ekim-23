@@ -7,6 +7,7 @@ import LoginPage from "../pages/LoginPage";
 import ProductCreatePage from "../pages/ProductCreatePage";
 import ProductEditPage from "../pages/ProductEditPage";
 import ProductPageContext from "../pages/ProductPageContext";
+import { ProtectedPage } from "../pages/ProtectedPage";
 
 const PageBody = ({ PI }) => {
   return (
@@ -26,13 +27,17 @@ const PageBody = ({ PI }) => {
           <ProductPageContext />
         </Route>
         <Route path="/products/create" exact>
-          <ProductCreatePage />
+          <ProtectedPage>
+            <ProductCreatePage />
+          </ProtectedPage>
         </Route>
         <Route path="/products/detail/:productId" exact>
           <ProductDetailPage />
         </Route>
         <Route path="/products/edit/:productId" exact>
-          <ProductEditPage />
+          <ProtectedPage>
+            <ProductEditPage />
+          </ProtectedPage>
         </Route>
         <Route path="*">
           <h2 className="error-box">404 - Sayfa Bulunamadı</h2>

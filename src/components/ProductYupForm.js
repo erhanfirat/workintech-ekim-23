@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import * as Yup from "yup";
@@ -11,6 +10,7 @@ import {
   FormText,
   FormFeedback,
 } from "reactstrap";
+import { API } from "../api/api";
 
 const renkler = [
   "Blue",
@@ -69,29 +69,25 @@ const ProductYupForm = ({ productData }) => {
     // ?
     if (product.id) {
       // Update: PUT
-      axios
-        .put(
-          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" +
-            product.id,
-          product
-        )
-        .then((res) => {
-          console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-          // todo: kullanıcıyı ürünler sayfasına redirect
-          history.push("/products");
-        });
+      API.put(
+        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" +
+          product.id,
+        product
+      ).then((res) => {
+        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
+        // todo: kullanıcıyı ürünler sayfasına redirect
+        history.push("/products");
+      });
     } else {
       // Create: POST
-      axios
-        .post(
-          "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
-          product
-        )
-        .then((res) => {
-          console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-          // todo: kullanıcıyı ürünler sayfasına redirect
-          history.push("/products");
-        });
+      API.post(
+        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
+        product
+      ).then((res) => {
+        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
+        // todo: kullanıcıyı ürünler sayfasına redirect
+        history.push("/products");
+      });
     }
   };
 

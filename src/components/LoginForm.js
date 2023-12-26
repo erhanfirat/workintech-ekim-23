@@ -1,9 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { Button, Spinner } from "reactstrap";
 import useInput from "../utils/hooks/useInput";
 import { useDispatch, useSelector } from "react-redux";
-import { UserActions } from "../store/reducers/userReducer";
 import { FetchStates } from "../store/reducers/productReducer";
 import { loginUserActionCreator } from "../store/actions/userActions";
 

@@ -3,6 +3,7 @@ import Main from "./layout/Main";
 import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
+import { API } from "./api/api";
 
 export const userName = "Ali";
 
@@ -19,6 +20,16 @@ function App() {
     // toast.success("UYGULAMA YÜKLENDİ");
     // toast.error("Bir hata ile karşılaşıldı.");
     // toast.warn("Dikkat!");
+
+    // token var mı kontrol et
+    const token = localStorage.getItem("token");
+    if (token) {
+      API.get("/user/verify").then((res) => {
+        // res: user info + new Token
+        // user infor -> user reducer
+        // new token -> local storage & axios header
+      });
+    }
   }, []);
 
   return (

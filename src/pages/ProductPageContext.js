@@ -1,11 +1,8 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import ProductCard2 from "../components/ProductCard2";
+import ProductCard from "../components/ProductCard";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { FetchStates } from "../store/reducers/productReducer";
-import { Spinner } from "reactstrap";
 import { ProductContext } from "../context/ProductContext";
+import { API } from "../api/api";
 
 const ProductPageContext = () => {
   const { products, dispatchProducts } = useContext(ProductContext);
@@ -14,10 +11,7 @@ const ProductPageContext = () => {
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
   const deleteProduct = (productId) => {
-    axios
-      .delete(
-        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
-      )
+    API.delete("/products/" + productId)
       .then((res) => {
         console.log("ürün silindi: ", res.data);
         fetchProducts();
@@ -28,8 +22,7 @@ const ProductPageContext = () => {
   };
 
   const fetchProducts = () => {
-    axios
-      .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
+    API.get("/products")
       .then((res) => {
         dispatchProducts({ type: "SET_PRODUCTS", payload: res.data });
 
@@ -75,7 +68,7 @@ const ProductPageContext = () => {
       </div>
       <div className="products-container gap-2">
         {list.map((product) => (
-          <ProductCard2
+          <ProductCard
             key={product.id}
             product={product}
             deleteProduct={deleteProduct}

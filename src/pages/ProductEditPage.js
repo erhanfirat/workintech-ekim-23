@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
 import ProductYupForm from "../components/ProductYupForm";
+import { API } from "../api/api";
 
 const ProductEditPage = () => {
   // productId url den yakala
@@ -18,11 +18,7 @@ const ProductEditPage = () => {
 
   // productId ye göre product datasını çek
   useEffect(() => {
-    axios
-      .get(
-        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
-      )
-      .then((res) => setProduct(res.data));
+    API.get("/products/" + productId).then((res) => setProduct(res.data));
   }, [productId]);
 
   return (

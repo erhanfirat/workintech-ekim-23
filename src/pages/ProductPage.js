@@ -1,12 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import ProductCard2 from "../components/ProductCard2";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchStates, ProductActions } from "../store/reducers/productReducer";
 import { Spinner } from "reactstrap";
 import { fetchProductsActionCreator } from "../store/actions/productActions";
+import { API } from "../api/api";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -17,10 +15,7 @@ const ProductPage = () => {
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
   const deleteProduct = (productId) => {
-    axios
-      .delete(
-        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
-      )
+    API.delete("/products/" + productId)
       .then((res) => {
         console.log("ürün silindi: ", res.data);
         // fetchProducts();
@@ -94,7 +89,7 @@ const ProductPage = () => {
       <div className="products-container gap-2">
         {productFetchState === FetchStates.fetching && <Spinner />}
         {list.map((product) => (
-          <ProductCard2
+          <ProductCard
             key={product.id}
             product={product}
             deleteProduct={deleteProduct}

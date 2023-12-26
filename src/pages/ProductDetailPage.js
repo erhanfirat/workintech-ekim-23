@@ -1,14 +1,16 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { Button } from "reactstrap";
+import { API } from "../api/api";
 
 const ProductDetailPage = () => {
   // productId url den yakala
   const { productId } = useParams();
   const history = useHistory();
+  const token = "CVBER34536DFge5ylk4m746lkm57456klmfdsfgep3574";
 
   console.log("productId > ", productId);
+  console.log("token > ", token);
 
   const [product, setProduct] = useState({});
 
@@ -19,9 +21,9 @@ const ProductDetailPage = () => {
 
   // productId ye göre product datasını çek
   useEffect(() => {
-    axios
+    API
       .get(
-        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId
+        "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products/" + productId, { headers: { Authorization: token}}
       )
       .then((res) => setProduct(res.data));
   }, [productId]);

@@ -1,8 +1,7 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API } from "../api/api";
 
 const ProductFormHook = () => {
   const {
@@ -28,14 +27,15 @@ const ProductFormHook = () => {
     // sayfa yenilenmesini engelle
     console.log("yeni product: ", product);
 
-    axios
-      .post("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products", product)
-      .then((res) => {
-        console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
-        // todo: kullanıcıyı ürünler sayfasına redirect
-        toast.success("Ürün başarıyla kaydedildi! ");
-        history.push("/products");
-      });
+    API.post(
+      "https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products",
+      product
+    ).then((res) => {
+      console.warn("ÜRÜN BAŞARIYLA KAYDEDİLDİ! ", res.data);
+      // todo: kullanıcıyı ürünler sayfasına redirect
+      toast.success("Ürün başarıyla kaydedildi! ");
+      history.push("/products");
+    });
   };
 
   return (

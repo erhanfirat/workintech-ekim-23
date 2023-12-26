@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 import { FetchStates, ProductActions } from "../reducers/productReducer";
-import axios from "axios";
+import { API } from "../../api/api";
 
 export const fetchProductsActionCreator = () => (dispatch, getState) => {
   // getState().product.fetchState
@@ -8,8 +8,7 @@ export const fetchProductsActionCreator = () => (dispatch, getState) => {
     type: ProductActions.setProductFetchState,
     payload: FetchStates.fetching,
   });
-  axios
-    .get("https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products")
+  API.get("/products")
     .then((res) => {
       dispatch({ type: ProductActions.setProductList, payload: res.data });
       dispatch({
