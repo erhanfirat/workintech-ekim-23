@@ -3,9 +3,11 @@ import ProductCard from "../components/ProductCard";
 import { toast } from "react-toastify";
 import { ProductContext } from "../context/ProductContext";
 import { API } from "../api/api";
+import { REQ_TYPES, useAxios } from "../utils/hooks/useAxios";
 
 const ProductPageContext = () => {
-  const { products, dispatchProducts } = useContext(ProductContext);
+  // const { products, dispatchProducts } = useContext(ProductContext);
+  const [fetchProducts, products, loading, err] = useAxios([]);
 
   const [filterText, setFilterText] = useState("");
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
@@ -14,32 +16,32 @@ const ProductPageContext = () => {
     API.delete("/products/" + productId)
       .then((res) => {
         console.log("ürün silindi: ", res.data);
-        fetchProducts();
+        fetchProducts({ reqType: REQ_TYPES.GET, endpoint: "/products" });
       })
       .catch((err) => {
         console.log("ürün silinirken bir hata ile karşılaşıldı: ", err);
       });
   };
 
-  const fetchProducts = () => {
-    API.get("/products")
-      .then((res) => {
-        dispatchProducts({ type: "SET_PRODUCTS", payload: res.data });
+  // const fetchProducts = () => {
+  //   API.get("/products")
+  //     .then((res) => {
+  //       dispatchProducts({ type: "SET_PRODUCTS", payload: res.data });
 
-        toast.success("Ürün datası başarıyla yüklendi!");
-      })
-      .catch((err) => {
-        toast.error(
-          "Ürün datası yüklenirken bir hata ile karşılaşıldı: " + err.message
-        );
-        dispatchProducts({
-          type: "CLEAR_PRODUCTS",
-        });
-      });
-  };
+  //       toast.success("Ürün datası başarıyla yüklendi!");
+  //     })
+  //     .catch((err) => {
+  //       toast.error(
+  //         "Ürün datası yüklenirken bir hata ile karşılaşıldı: " + err.message
+  //       );
+  //       dispatchProducts({
+  //         type: "CLEAR_PRODUCTS",
+  //       });
+  //     });
+  // };
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts({ reqType: REQ_TYPES.GET, endpoint: "/products" });
   }, []);
 
   useEffect(() => {
