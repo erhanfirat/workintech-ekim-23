@@ -54,8 +54,8 @@ const LoginForm = () => {
           type="password"
           className="form-control"
           value={password}
-          data-testid="user-pass-input"
           onChange={passwordHandler}
+          data-testid="user-pass-input"
         />
       </div>
 

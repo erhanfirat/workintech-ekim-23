@@ -1,13 +1,29 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import SayacSayfa from "./SayacSayfa";
-import LoginPage from "./LoginPage";
+import { CounterContextProvider } from "../context/CounterContext";
+import { Provider } from "react-redux";
+import { store } from "../store/store";
+import { BrowserRouter } from "react-router-dom";
+import { SettingsContextProvider } from "../context/SettingsContext";
+import { ProductContextProvider } from "../context/ProductContext";
 
 test("Yumurta Sepeti toggle test", () => {
   // Arrange
   render(
-    <div className="container">
-      <SayacSayfa PI={3.1415} />
-    </div>
+    <Provider store={store}>
+      <BrowserRouter>
+        {/* React Router DOM Provider component*/}
+        <CounterContextProvider>
+          <SettingsContextProvider>
+            <ProductContextProvider>
+              <div className="container">
+                <SayacSayfa PI={3.1415} />
+              </div>
+            </ProductContextProvider>
+          </SettingsContextProvider>
+        </CounterContextProvider>
+      </BrowserRouter>
+    </Provider>
   );
 
   screen.debug();
@@ -22,7 +38,22 @@ test("Yumurta Sepeti toggle test", () => {
 });
 
 test("Sepete ekle testi", () => {
-  render(<SayacSayfa PI={3.1415} />);
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        {/* React Router DOM Provider component*/}
+        <CounterContextProvider>
+          <SettingsContextProvider>
+            <ProductContextProvider>
+              <div className="container">
+                <SayacSayfa PI={3.1415} />
+              </div>
+            </ProductContextProvider>
+          </SettingsContextProvider>
+        </CounterContextProvider>
+      </BrowserRouter>
+    </Provider>
+  );
 
   const artBtn = screen.getByTestId("counter-arttir-btn");
   fireEvent.click(artBtn);
@@ -34,7 +65,22 @@ test("Sepete ekle testi", () => {
 });
 
 test("Sepete Ekle > sayaç eksi değer alamaz", () => {
-  render(<SayacSayfa PI={3.1415} />);
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        {/* React Router DOM Provider component*/}
+        <CounterContextProvider>
+          <SettingsContextProvider>
+            <ProductContextProvider>
+              <div className="container">
+                <SayacSayfa PI={3.1415} />
+              </div>
+            </ProductContextProvider>
+          </SettingsContextProvider>
+        </CounterContextProvider>
+      </BrowserRouter>
+    </Provider>
+  );
 
   const azlBtn = screen.getByTestId("azalt-artis");
   fireEvent.click(azlBtn);

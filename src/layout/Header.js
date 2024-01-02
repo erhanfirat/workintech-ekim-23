@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { CounterContext } from "../context/CounterContext";
 import { SettingsContext } from "../context/SettingsContext";
 import { ProductContext } from "../context/ProductContext";
+import { isWeekend } from "date-fns";
 
 const Header = () => {
   const [userName, setUserName] = useState("");
