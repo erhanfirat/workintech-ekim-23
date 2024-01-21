@@ -20,7 +20,7 @@ export const loginUserActionCreator = (formData) => (dispatch, getState) => {
       // 2 - axios > headers > authorization
       renewAPI();
 
-      dispatch({ type: UserActions.setUserName, payload: formData.name });
+      dispatch(setUserNameActionCreator(formData.name));
       dispatch({ type: UserActions.setUserEmail, payload: formData.email });
       dispatch({
         type: UserActions.setUserFetchState,
@@ -35,3 +35,8 @@ export const loginUserActionCreator = (formData) => (dispatch, getState) => {
       });
     });
 };
+
+export const setUserNameActionCreator = (newUserName) => ({
+  type: UserActions.setUserName,
+  payload: newUserName,
+});

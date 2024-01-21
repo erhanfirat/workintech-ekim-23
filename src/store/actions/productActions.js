@@ -27,3 +27,15 @@ export const fetchProductsActionCreator = () => (dispatch, getState) => {
       });
     });
 };
+
+export const deleteProductAction = (productId) => (dispatch, getState) => {
+  API.delete("/products/" + productId)
+    .then((res) => {
+      console.log("ürün silindi: ", res.data);
+      // fetchProducts();
+      dispatch(fetchProductsActionCreator());
+    })
+    .catch((err) => {
+      console.log("ürün silinirken bir hata ile karşılaşıldı: ", err);
+    });
+};

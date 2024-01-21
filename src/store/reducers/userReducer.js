@@ -18,18 +18,14 @@ export const userReducer = (state = userInitial, action) => {
   switch (action.type) {
     case UserActions.setUserName:
       return { ...state, name: action.payload };
-      break;
 
     case UserActions.setUserEmail:
       return { ...state, email: action.payload };
-      break;
 
     case UserActions.setUserFetchState:
       return { ...state, fetchState: action.payload };
-      break;
 
     default:
       return state;
-      break;
   }
 };

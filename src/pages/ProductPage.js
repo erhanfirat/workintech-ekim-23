@@ -3,7 +3,10 @@ import ProductCard from "../components/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchStates, ProductActions } from "../store/reducers/productReducer";
 import { Spinner } from "reactstrap";
-import { fetchProductsActionCreator } from "../store/actions/productActions";
+import {
+  deleteProductAction,
+  fetchProductsActionCreator,
+} from "../store/actions/productActions";
 import { API } from "../api/api";
 
 const ProductPage = () => {
@@ -15,15 +18,7 @@ const ProductPage = () => {
   const [list, setList] = useState([]); // ekranda listelenecek product arrayi
 
   const deleteProduct = (productId) => {
-    API.delete("/products/" + productId)
-      .then((res) => {
-        console.log("ürün silindi: ", res.data);
-        // fetchProducts();
-        dispatch(fetchProductsActionCreator());
-      })
-      .catch((err) => {
-        console.log("ürün silinirken bir hata ile karşılaşıldı: ", err);
-      });
+    dispatch(deleteProductAction(productId));
   };
 
   // const fetchProducts = () => {

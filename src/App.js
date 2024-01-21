@@ -4,6 +4,8 @@ import { ToastContainer, toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 import { API } from "./api/api";
+import { useDispatch } from "react-redux";
+import { setUserNameActionCreator } from "./store/actions/userActions";
 
 export const userName = "Ali";
 
@@ -11,6 +13,7 @@ function App() {
   const [sayacBaslangic, setSayacBaslangic] = useState(50);
   const PI = 3.1415;
   const log = (msj) => console.log(msj);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // app componentinin did mount
@@ -30,6 +33,8 @@ function App() {
         // new token -> local storage & axios header
       });
     }
+
+    dispatch(setUserNameActionCreator("Guest"));
   }, []);
 
   return (
